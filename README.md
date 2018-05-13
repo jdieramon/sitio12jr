@@ -10,7 +10,7 @@ Para contactar con los desarrolladores escribe un email a:
 - amaurandi@um.es
 
 
-. \ \ \ <- NO es una mota de polvo :)
+. &nbsp; &nbsp; <- NO es una mota de polvo :)
 
 
 
