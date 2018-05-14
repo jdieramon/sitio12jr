@@ -9,7 +9,8 @@ Para contactar con los desarrolladores escribe un email a:
 - antoniojose.peran@um.es
 - amaurandi@um.es
 
-.
+
+. &nbsp; &nbsp; <- NO es una mota de polvo :)
 
 
 
