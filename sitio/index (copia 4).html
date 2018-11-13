@@ -361,7 +361,7 @@ Recomendamos los siguientes hoteles:
 
       <div class="container">
       <h2>Programación por días</h2>
-<p> <font color= "red">Esta semana colgaremos el programa detallado de las jornadas</font</p> 
+<p> <font color= "red">Esta semana colgaremos el programa detallado de las jornadas</font</p>
       </div>
 
       <a href="#organizacion" class="btn btn-circle page-scroll" style="border: 4px solid black !important;color:black"> <i class="fa fa-angle-double-down fa-inverse animated" style='color: black;'></i> </a>
@@ -646,25 +646,29 @@ Recomendamos los siguientes hoteles:
 <script src="js/jquery.easing.min.js"></script>
 
 <!-- Leaflet -->
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
-<script src="js/Google.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
 
 <script>
 
-    var map = L.map('map').setView([38.016721, -1.170248], 16);
+var map = L.map('map').
+     setView([37.998965, -1.146542], 13);
+     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+     maxZoom: 18
+     }).addTo(map);
 
-    // add a marker in the given location, attach some popup content to it and open the popup
-  // note that the street numbering is a bit odd: the actual entry is at the round part of the building (NE corner)
-    L.marker([38.016721, -1.170248]).addTo(map)
-        .bindPopup('X Jornadas de Usuarios de R, Facultad de Economía y Empresa de la UM, Campus de Espinardo.')
+     L.marker([37.986979, -1.125501]).addTo(map)
+        .bindPopup('Sala Revolver \n (Pinchada de música africana)')
+        .openPopup();
+     L.marker([37.985524, -1.126380]).addTo(map)
+        .bindPopup('Restaurante Madre de Dios (Lugar de celebración de la cena social)')
+        .openPopup();
+     L.marker([38.016721, -1.170248]).addTo(map)
+        .bindPopup('X Jornadas de Usuarios de R, Facultad de Economía y Empresa de la UM, Campus de Espinardo')
         .openPopup();
 
-    map.scrollWheelZoom.disable();
 
-    // add Google layer
-    var googleLayer = new L.Google('ROADMAP');
-    map.addLayer(googleLayer);
 
 </script>
 
