@@ -49,7 +49,7 @@ table {
 }
 
 a {
-    color: #FF6F61;
+    color: #42dca3;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
@@ -58,7 +58,7 @@ a {
 a:hover,
 a:focus {
     text-decoration: none;
-    color: #A75D67;
+    color: #1d9b6c;
 }
 
 .light {
@@ -151,7 +151,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/madrid_11jr.jpg) no-repeat bottom center scroll;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/d/da/MADRID_060518_MXALX_087.jpg) no-repeat scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -309,17 +309,17 @@ a:focus {
 }
 
 .btn-default {
-    border: 1px solid #FF6F61;
+    border: 1px solid #42dca3;
     color: #42dca3;
     background-color: transparent;
 }
 
 .btn-default:hover,
 .btn-default:focus {
-    border: 1px solid #FF6F61;
+    border: 1px solid #42dca3;
     outline: 0;
     color: #000;
-    background-color: #FF6F61;
+    background-color: #42dca3;
 }
 
 ul.banner-social-buttons {
