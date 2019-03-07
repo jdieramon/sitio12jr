@@ -161,16 +161,21 @@ a:focus {
 
 .intro .intro-body {
     display: table-cell;
-    vertical-align: middle;
+    vertical-align: bottom;
+	float: right;
+
 }
 
 .intro .intro-body .brand-heading {
     font-size: 40px;
+    vertical-align: -100px;
+    float: right;
+
 }
 
 .intro .intro-body .intro-text {
     font-size: 18px;
-	color: yellow;
+    float: right;
 }
 
 @media(min-width:768px) {
