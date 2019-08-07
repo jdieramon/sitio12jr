@@ -730,15 +730,19 @@ el <b>envío de propuestas</b> a través del siguiente <a href = "https://docs.g
 <script>
 
 var map = L.map('map').
-     setView([40.4146500, -3.7004000], 13);
+     setView([40.4146500, -3.7004000], 12);
      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
      maxZoom: 18
      }).addTo(map);
 
-     L.marker([40.3977079,-3.6865645]).addTo(map)
+      L.marker([40.3975203,-3.685145]).addTo(map)
         .bindPopup('Jueves 14 Noviembre  \n (Evento Repsol)')
-        .openPopup()
+        .openPopup();
+      L.marker([40.4504168,-3.7417081]).addTo(map)
+        .bindPopup('Viernes 15 y Sábado 16 de Noviembre  \n (UNED)')
+        .openPopup();
+    
 
 
 
