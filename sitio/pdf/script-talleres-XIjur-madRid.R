@@ -7,6 +7,11 @@
 
 # TODOS LOS TALLERES SON EN PARALELO, VIERNES 15 DE NOVIEMBRE DE 2019, DE 15 HORAS A 17.25
 
+#### Taller T1 Análisis de datos funcionales, regresión, clasificación y clustering funcional
+#### Mediante la librería fda.usc
+
+install.packages("fda.usc")
+install.packages(c("e1071", "randomForest", "nnet"))
 
 #### Taller T2 Herramientas de R para la investigación de mercados (José Ignacio Casas Álvarez)
 ##############################################################################
