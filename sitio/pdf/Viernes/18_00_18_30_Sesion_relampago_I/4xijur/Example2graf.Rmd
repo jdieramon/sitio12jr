@@ -1,0 +1,58 @@
+Question
+========
+A partir de la información del siguiente gráfico, que representa el número de días de baja el mes pasado de los
+trabajadores de una empresa, ¿qué porcentaje de trabajadores han estado algún día de baja?
+
+```{r, echo=FALSE, fig.height=3, fig.width=6, fig.cap=""}
+
+library(exams)
+n <- sample(15:25, 1)
+p <- runif(1, 0, 0.5)
+datos <- rbinom(n, size = 6, prob = p)
+aux <- table(datos)
+end.x <- max(as.numeric(names(aux))) + 1
+is.even <- function(x) x %% 2 == 0
+end.y <- ifelse(is.even(max(aux)), max(aux), max(aux) + 1)
+
+op <- par(mar = c(4, 4, 1, 2) + 0.1)
+plot(aux, type = "h", lwd = 2, col = "red", bty = "n", 
+     xlim = c(0, end.x), ylim = c(0, end.y), axes = F,
+     xlab = "nº días de baja", ylab = "nº trabajadores", 
+     cex.lab = 0.8)
+axis(1, at = 0:end.x, cex.axis = 0.8)
+axis(2, at = seq(0, end.y, 2), cex.axis = 0.8)
+
+```
+
+```{r questionlist, echo = FALSE, results = "asis"}
+
+sol <- round(sum(datos > 0)*100/n, 2)
+mal <- round(c(sum(datos = 1)*100/n, sum(datos > 1)*100/n, 
+             sum(datos < 1)*100/n, sum(datos <= 1)*100/n), 2)
+
+respuestas <- unique(c(sol, mal))
+soluciones <- c(TRUE, rep(FALSE, length(respuestas) - 1))
+           
+answerlist(respuestas, markup = "markdown")
+
+```
+
+
+Solution
+========
+
+El porcentaje solicitado sería efectivamente 100 por el número de trabajadores que tienen una o más bajas dividido entre el número total de trabajadores. +Estar algún día de baja equivale a estar uno o más días de baja.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+
+answerlist(ifelse(soluciones, "True", "False" ), markup = "markdown")
+
+```
+
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(soluciones, single = TRUE)`
+exname: grafico
+exshuffle: 3

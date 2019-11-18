@@ -1,0 +1,42 @@
+
+
+:root {
+  --corporate-red: #af1a2e;
+  --corporate-grey: #565F5F;
+  --size-scriptsize: 12px;
+}
+
+.shuriken>.blade1 {height: 100px; width:100%; position: absolute; top: 0; left: 0;}
+.shuriken>.blade2 {height: calc(100% - 165px); width:100px; position: absolute; top: 100px; right: 0;}
+.shuriken>.blade3 {height: 65px; width: 100%; position: absolute; bottom: 0; right: 0; border-top: 1px solid white;}
+.shuriken>.blade4 {height: calc(100% - 165px); width:100px; position: absolute; bottom: 65px; left: 0;}
+.shuriken>.hole {height: calc(100% - 165px); width:calc(100% - 200px); position: absolute; top: 100px; left: 100px;}
+
+.title-slide h3{
+  margin: 10px 0 0 50px;
+}
+
+.escudoum {
+  float: right; 
+  margin-right: -70px; 
+  margin-top: -150px;
+}
+
+.ponents>p {
+  color: #FFF;
+  font-size: 14px;
+}
+
+
+.blade3 {
+  background-color: #565F5F;
+} 
+
+.universidad-de-murcia p{
+  margin-left: 84px;
+  margin-top: 11px;
+}
+
+pre {
+  margin-left: 1.4%;
+} 

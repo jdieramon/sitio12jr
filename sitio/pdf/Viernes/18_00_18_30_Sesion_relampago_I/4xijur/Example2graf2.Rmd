@@ -1,0 +1,30 @@
+```{r questionlist, echo = FALSE, results = "asis"}
+
+sol <- round(sum(datos > 0)*100/n, 2)
+mal <- round(c(sum(datos = 1)*100/n, sum(datos > 1)*100/n, 
+             sum(datos < 1)*100/n, sum(datos <= 1)*100/n), 2)
+
+respuestas <- unique(c(sol, mal))
+soluciones <- c(TRUE, rep(FALSE, length(respuestas) - 1))
+           
+answerlist(respuestas, markup = "markdown")
+
+```
+
+Solution
+========
+
+El porcentaje solicitado sería efectivamente 100 por el número de trabajadores que tienen una o más bajas dividido entre el número total de trabajadores. +Estar algún día de baja equivale a estar uno o más días de baja.
+
+```{r solutionlist, echo = FALSE, results = "asis"}
+
+answerlist(ifelse(soluciones, "True", "False" ), markup = "markdown")
+
+```
+
+Meta-information
+================
+extype: schoice
+exsolution: `r mchoice2string(soluciones, single = TRUE)`
+exname: grafico
+exshuffle: 3

@@ -1,0 +1,41 @@
+<<echo=FALSE, results=hide>>=
+
+functions <- c("$f(x)= \\sqrt{x}$", "$f(x)=x$", "$f(x)=x^2$", "$f(x)= \\ln(x)$")
+
+derivatives <- c("$f'(x)=1/{2\\sqrt{x}}$", "$f'(x)=1$", "$f'(x)=2x$", "$f'(x)=1/x$")
+
+wrongDerivatives <- c("$f'(x)=1/{\\sqrt{x}}$", "$f'(x)=x$", "$f'(x)=x^3 $", "$f'(x)=e^{x}$")
+
+ex<-c("Deriverative functions")
+@
+
+\begin{question}
+Select derivative of the function
+
+<<echo=FALSE, results=tex>>=
+ind.correct <- sample(1:length(functions), 1)
+writeLines(functions[ind.correct])
+@
+
+<<echo=FALSE, results=tex>>=
+indices <- 1:length(functions)
+answers <- c(derivatives[ind.correct], derivatives[-ind.correct], wrongDerivatives)
+
+booleanAnswers <- c(TRUE, rep(FALSE, length(derivatives) - 1 + length(wrongDerivatives)))
+
+answerlist(answers, markup = "latex")
+@
+
+\end{question}
+
+\begin{solution}
+<<echo=FALSE, results=tex>>=
+answerlist(ifelse(booleanAnswers, "True", "False" ), markup = "latex", ex)
+@
+\end{solution}
+
+%%\extype{schoice}
+%%\exsolution{\Sexpr{mchoice2string(solutions)}}
+%%\exname{prueba}
+%%\exshuffle{3}
+%%\SweaveUTF8

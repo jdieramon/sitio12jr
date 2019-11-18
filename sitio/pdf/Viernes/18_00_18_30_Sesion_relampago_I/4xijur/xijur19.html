@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Proyecto de adaptación de R/exams a la plataforma Sakai</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Méndez Pérez, Jesús María. Palazón Ferrando, José Antonio. Alacid Cárceles, Valentina. Arnaldos García, Fuensanta. Caballero Pintado, María Victoria. Díaz Delfa, María Teresa. Faura Martínez, Úrsula. Molera Peris, Lourdes. Parra Frutos, Isabel. Ubero Pascal, Nicolás" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uol.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/uol-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/um.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+layout: false
+class: shuriken white inverse 
+
+.blade1.content[
+ &lt;div class = 'logosvc'&gt;&lt;img src="imgs/madrid.png" width="300px" /&gt;&lt;/div&gt;
+]
+.blade2[.content.vertical-rl[
+
+]]
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+ &lt;div class = 'escudoum'&gt;&lt;img src="imgs/escudo-um-peq.png" width="265px" /&gt;&lt;/div&gt;
+]]
+.blade4[.content.sideways-rl[.center[
+
+]]]
+.hole[.content.center.vmiddle[
+
+## Proyecto de adaptación de R/exams a la plataforma Sakai
+&lt;hr /&gt;
+15 de noviembre 2019
+.ponents[
+Méndez Pérez, Jesús María
+&lt;i class="fas fa-circle fa-xs"&gt;&lt;/i&gt;
+Palazón Ferrando, José Antonio
+
+Alacid Cárceles, Valentina
+&lt;i class="fas fa-circle fa-xs"&gt;&lt;/i&gt;
+Arnaldos García, Fuensanta
+&lt;i class="fas fa-circle fa-xs"&gt;&lt;/i&gt;
+Caballero Pintado, María Victoria
+&lt;i class="fas fa-circle fa-xs"&gt;&lt;/i&gt;
+Díaz Delfa, María Teresa
+
+
+Faura Martínez, Úrsula
+&lt;i class="fas fa-circle fa-xs"&gt;&lt;/i&gt;
+Molera Peris, Lourdes
+&lt;i class="fas fa-circle fa-xs"&gt;&lt;/i&gt;
+Parra Frutos, Isabel
+&lt;i class="fas fa-circle fa-xs"&gt;&lt;/i&gt;
+Ubero Pascal, Nicolás
+]]]
+
+
+---
+
+class: shuriken
+## ¿Para qué este proyecto?
+
+- Diseñar fácilmente pruebas personalizadas.
+
+- Disponer de baterías de preguntas independientes de la plataforma de aprendizaje (Moodle, Sakai...).
+
+- Incluir en Sakai preguntas calculadas más avanzadas de las que permite actualmente.
+
+**SOLUCIÓN:** Usar el paquete `exams`, que dispone de diferentes tipos de preguntas y proporciona *output* para distintas plataformas de aprendizaje. Web de apoyo [R/EXAMS](http://www.r-exams.org/) con tutoriales y ejemplos.
+ 
+**PROBLEMA:** El paquete `exams` no es directamente compatible con Sakai.
+
+.center[ 
+&lt;img src="imgs/escher_1.jpg" width="30%" /&gt;
+]
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+## Objetivo
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="imgs/oneforallwithSakai.svg" alt="Incluir Sakai como plataforma compatible con R/exams" width="60%" /&gt;
+&lt;p class="caption"&gt;Incluir Sakai como plataforma compatible con R/exams&lt;/p&gt;
+&lt;/div&gt;
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+background-image: url("imgs/estadisticas1.svg") 
+background-position: 100% 85%
+class: shuriken
+
+## Uso de la herramienta Exámenes 
+### Universidad de Murcia
+#### (basada en Sakai: *Tests &amp; Quizzes*)
+
+&lt;br&gt;
+
+- Títulos de grado: 54
+- Títulos de máster: 70
+- Profesores: 2642
+- Estudiantes: 30164
+
+&lt;br&gt;
+
+- Cuestiones de octubre de 2018 a octubre de 2019:
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+
+---
+
+class: shuriken
+## Tareas y exámenes en Sakai con R/exams
+
+&lt;br&gt;
+
+- Aprovechar la versatilidad de R en Sakai:
+
+  - Preguntas calculadas más avanzadas que las de Sakai, usando las funciones disponibles en R.
+
+  - Gráficos incrustados en las cuestiones (generados con R).
+
+
+&lt;br&gt;
+
+
+.pull-left[ 
+### &lt;i class="fas fa-file-alt fa-lg"&gt;&lt;/i&gt; Herramienta Tareas (*Assignments* en Sakai)
+- Ejercicios personalizados ("pre-labs" o de seguimiento de una práctica).
+]
+
+
+.pull-right[ 
+### &lt;i class="far fa-check-square fa-lg"&gt;&lt;/i&gt; Herramienta Exámenes (*Tests &amp; Quizzes* en Sakai)
+- Exámenes o baterías de preguntas generadas a partir de plantillas de ejercicios.
+]
+
+
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+## Modo de trabajo
+
+&lt;br&gt;
+
+.pull-left[
+
+- Escribir cada cuestión en un fichero,
+  con dos posibles formatos:
+
+  - Markdown `\(+\)` .blue[R code] `\(\rightarrow\)` **.Rmd** 
+
+  - `\(\LaTeX\)` `\(+\)` .blue[R code] `\(\rightarrow\)` **.Rnw**
+
+  
+- Crear la(s) prueba(s) deseada(s) mediante un 
+  R script incluyendo la función apropiada 
+  con los nombres de los ficheros de las preguntas
+  como argumentos.
+
+]
+
+
+.pull-right[
+
+&lt;img src="imgs/elearning-create-sakai.svg" width="100%" /&gt;
+]
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+### 1. Formatos del fichero de preguntas
+
+
+
+
+
+.pull-left[
+### Rmd
+
+
+     Question 
+     ======== 
+     What is the seat of the federal authorities in  
+     Switzerland (i.e., the de facto capital)? 
+      
+     Answerlist 
+     ---------- 
+     * Basel 
+     * Bern 
+     * Geneva 
+     * Lausanne 
+     * Zurich 
+     * St. Gallen 
+     * Vaduz 
+      
+     Solution 
+     ======== 
+     There is no de jure capital but the de facto capital and  
+     seat of the federal authorities is Bern. 
+      
+     Answerlist 
+     ---------- 
+     * False 
+     * True 
+     * False 
+     * False 
+     * False 
+     * False 
+     * False 
+      
+     Meta-information 
+     ================ 
+     exname: Swiss Capital 
+     extype: schoice 
+     exsolution: 0100000 
+     exshuffle: 5 
+] 
+
+.pull-right[
+### Rnw
+
+
+     \begin{question} 
+     What is the seat of the federal authorities in  
+     Switzerland (i.e., the de facto capital)? 
+      
+     \begin{answerlist} 
+       \item Basel 
+       \item Bern 
+       \item Geneva 
+       \item Lausanne 
+       \item Zurich 
+       \item St.~Gallen 
+       \item Vaduz 
+     \end{answerlist} 
+     \end{question} 
+      
+     \begin{solution} 
+     There is no de jure capital but the de facto capital and  
+     seat of the federal authorities is Bern. 
+      
+     \begin{answerlist} 
+       \item False. 
+       \item True. 
+       \item False. 
+       \item False. 
+       \item False. 
+       \item False. 
+       \item False. 
+     \end{answerlist} 
+     \end{solution} 
+      
+     \exname{Swiss Capital} 
+     \extype{schoice} 
+     \exsolution{0100000} 
+     \exshuffle{5} 
+      
+] 
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+### 2. R script para generar exámenes
+
+
+```{r
+questions &lt;- c("Example1.Rmd", "Example2.Rnw", "Example3.Rmd", "Example4.Rmd")
+exams2sakai(questions, ...)
+exams2nops(questions, ...)
+```
+
+**Funciones en el paquete `exams`:**
+
+- `exams2html`
+- `exams2blackboard` 
+- `exams2moodle`
+- `exams2qti12` `\(\rightarrow\)`  No totalmente compatible con Sakai
+- `exams2nops` `\(\rightarrow\)`  Función para exámenes escritos con preguntas de respuesta múltiple (*multiple choice* and *single choice*) que pueden ser automáticamente generados, escaneados y evaluados
+
+
+** Nueva función:**
+
+`exams2sakai` `\(\rightarrow\)`  Nuestra función adaptada a Sakai, con una plantilla específica (*qtisakai.xml*).
+
+
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+### 3.1. Output para &lt;i class="fas fa-check-square fa-sm"&gt;&lt;/i&gt; Exámenes (*Tests &amp; Quizzes*)
+
+
+
+```r
+library(exams)
+
+myexam &lt;- list("example1.Rmd",
+               "example2.Rnw",
+               "example3.Rmd",
+               "example4.Rmd")
+myexam &lt;- paste("exercises", myexam, sep = "/")
+
+set.seed(101)
+ex1 &lt;- exams2sakai(myexam, n = 1, 
+             converter = "pandoc-mathjax",
+             dir = ".", points = c(1, 1, 1, 1), 
+             showpoints = TRUE)  
+```
+ 
+
+&lt;br&gt;
+
+- **RESULTADO:** Un fichero .xml con el examen que puede ser importado desde Sakai.
+
+- **PENDIENTE:** Poder importar desde Sakai un fichero .zip que se puede generar con la función `exams2sakai` en el que se incluye el examen o los exámenes creados. 
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+
+---
+
+
+class: shuriken
+### 3.2. Output para &lt;i class="fas fa-file-alt fa-sm"&gt;&lt;/i&gt; Tareas (*Assignments*) 
+
+
+
+```r
+library(exams)
+
+myexam &lt;- list("example1.Rmd", 
+               "example2.Rnw",
+               "example3.Rmd",
+               "example4.Rmd")
+myexam &lt;- paste("exercises", myexam, sep = "/")
+
+set.seed(101)
+ex1 &lt;- exams2nops(myexam, n = 3, 
+            dir = "nops", points = c(1, 1, 1, 1), 
+            showpoints = TRUE)
+```
+ 
+&lt;br&gt;
+
+- **RESULTADO:** Tres ficheros .pdf con los tres exámenes distintos generados. Cada uno de esos exámenes puede asignarse a un estudiante.
+
+- **PENDIENTE:** Programar la asignación de los exámenes a los estudiantes mediante `shell-script` en GNU/Linux o Mac y `PowerShell` en Windows.
+
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+### 3.2.  Output para &lt;i class="fas fa-file-alt fa-sm"&gt;&lt;/i&gt; Tareas (*Assignments*)
+
+.center[ 
+&lt;img src="imgs/nopsOutput.svg" width="64%" /&gt;
+] 
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+
+---
+
+class: inverse
+# Algunos ejemplos de preguntas
+
+---
+
+class: shuriken
+### Ejemplo 1
+
+Pregunta de respuesta múltiple usando Latex
+
+
+     &lt;&lt;echo=FALSE, results=hide&gt;&gt;= 
+      
+     functions &lt;- c("$f(x)= \\sqrt{x}$", "$f(x)=x$", "$f(x)=x^2$", "$f(x)= \\ln(x)$") 
+      
+     derivatives &lt;- c("$f'(x)=1/{2\\sqrt{x}}$", "$f'(x)=1$", "$f'(x)=2x$", "$f'(x)=1/x$") 
+      
+     wrongDerivatives &lt;- c("$f'(x)=1/{\\sqrt{x}}$", "$f'(x)=x$", "$f'(x)=x^3 `\(", "\)`f'(x)=e^{x}$") 
+      
+     ex&lt;-c("Deriverative functions") 
+     @ 
+      
+     \begin{question} 
+     Select derivative of the function 
+      
+     &lt;&lt;echo=FALSE, results=tex&gt;&gt;= 
+     ind.correct &lt;- sample(1:length(functions), 1) 
+     writeLines(functions[ind.correct]) 
+     @ 
+      
+     &lt;&lt;echo=FALSE, results=tex&gt;&gt;= 
+     indices &lt;- 1:length(functions) 
+     answers &lt;- c(derivatives[ind.correct], derivatives[-ind.correct], wrongDerivatives) 
+      
+     booleanAnswers &lt;- c(TRUE, rep(FALSE, length(derivatives) - 1 + length(wrongDerivatives))) 
+      
+     answerlist(answers, markup = "latex") 
+     @ 
+      
+     \end{question} 
+      
+     \begin{solution} 
+     &lt;&lt;echo=FALSE, results=tex&gt;&gt;= 
+     answerlist(ifelse(booleanAnswers, "True", "False" ), markup = "latex", ex) 
+     @ 
+     \end{solution} 
+      
+     %%\extype{schoice} 
+     %%\exsolution{\Sexpr{mchoice2string(solutions)}} 
+     %%\exname{prueba} 
+     %%\exshuffle{3} 
+     %%\SweaveUTF8 
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+### Ejemplo 2
+
+Pregunta de respuesta múltiple calculada incluyendo gráficos y con comentarios a nivel de pregunta (respuestas correctas e incorrectas)
+
+.pull-left[
+&lt;br&gt;
+
+     Question 
+     ======== 
+     A partir de la información del siguiente gráfico, que representa  
+     el número de días de baja el mes pasado de los 
+     trabajadores de una empresa, ¿qué porcentaje de trabajadores  
+     han estado algún día de baja? 
+      
+     ```{r, echo=FALSE, fig.height=3, fig.width=6, fig.cap=""} 
+      
+     library(exams) 
+     n &lt;- sample(15:25, 1) 
+     p &lt;- runif(1, 0, 0.5) 
+     datos &lt;- rbinom(n, size = 6, prob = p) 
+     aux &lt;- table(datos) 
+     end.x &lt;- max(as.numeric(names(aux))) + 1 
+     is.even &lt;- function(x) x %% 2 == 0 
+     end.y &lt;- ifelse(is.even(max(aux)), max(aux), max(aux) + 1) 
+      
+     op &lt;- par(mar = c(4, 4, 1, 2) + 0.1) 
+     plot(aux, type = "h", lwd = 2, col = "red", bty = "n",  
+          xlim = c(0, end.x), ylim = c(0, end.y), axes = F, 
+          xlab = "nº días de baja", ylab = "nº trabajadores",  
+          cex.lab = 0.8) 
+     axis(1, at = 0:end.x, cex.axis = 0.8) 
+     axis(2, at = seq(0, end.y, 2), cex.axis = 0.8) 
+      
+     ``` 
+]
+
+.pull-right[
+&lt;br&gt;
+
+     ```{r questionlist, echo = FALSE, results = "asis"} 
+      
+     sol &lt;- round(sum(datos &gt; 0)*100/n, 2) 
+     mal &lt;- round(c(sum(datos = 1)*100/n, sum(datos &gt; 1)*100/n,  
+                  sum(datos &lt; 1)*100/n, sum(datos &lt;= 1)*100/n), 2) 
+      
+     respuestas &lt;- unique(c(sol, mal)) 
+     soluciones &lt;- c(TRUE, rep(FALSE, length(respuestas) - 1)) 
+                 
+     answerlist(respuestas, markup = "markdown") 
+      
+     ``` 
+      
+     Solution 
+     ======== 
+      
+     El porcentaje solicitado sería efectivamente 100 por el número de trabajadores que tienen una o más bajas dividido entre el número total de trabajadores. +Estar algún día de baja equivale a estar uno o más días de baja. 
+      
+     ```{r solutionlist, echo = FALSE, results = "asis"} 
+      
+     answerlist(ifelse(soluciones, "True", "False" ), markup = "markdown") 
+      
+     ``` 
+      
+     Meta-information 
+     ================ 
+     extype: schoice 
+     exsolution: `r mchoice2string(soluciones, single = TRUE)` 
+     exname: grafico 
+     exshuffle: 3 
+] 
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+
+---
+
+class: shuriken
+### Ejemplo 2 (continuación) 
+
+.pull-left[ 
+&lt;img src="imgs/enunciadohtml.PNG" width="180%" /&gt;
+
+] 
+
+.pull-right[
+&lt;img src="imgs/AV.PNG" width="200%" /&gt;
+
+&lt;img src="imgs/examenAV.PNG" width="200%" /&gt;
+
+
+]
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+
+class: shuriken
+### Ejemplo 3
+
+Pregunta calculada usando imágenes
+
+.pull-left[ 
+
+      
+     ```{r, echo = FALSE, results = "hide", message=FALSE} 
+      
+     require( imager ) 
+      
+     exams::include_supplement( "examsExtra.R", recursive = TRUE ) 
+     source( "examsExtra.R" ) 
+      
+     datOut &lt;- hotSpot( "example4/Dragonfly_anatomy-color-mudo.png",  
+                        "example4/Dragonfly_anatomy.dat" ) 
+     ``` 
+      
+     Question 
+     ======== 
+     Indicates the correct codes for the structures shown in the figure. 
+      
+     ![](image.png){ width="80%"} 
+      
+     ```{r questionlist, echo = FALSE, results = "asis"} 
+     answerlist( datOut$questions, markup = "markdown" ) 
+     ``` 
+      
+     Solution 
+     ======== 
+      
+     ```{r solutionlist, echo = FALSE, results = "asis"} 
+     # answerlist( ifelse(dat$solutions, "True", "False"), explanations, markup = "markdown") 
+     ``` 
+      
+     Meta-information 
+     ================ 
+     extype: mchoice 
+     exsolution: `r mchoice2string( datOut$solutions )` 
+     exname: image description 
+] 
+
+.pull-right[
+&lt;img src="examples/example4/Dragonfly_anatomy-color-mudo.png" width="50%" /&gt;
+
+
+                        labx  laby   finix finiy 
+     cabeza             123    80      71    60   
+     tórax              271    80     191    60   
+     abdomen            692    80     360    60   
+     'ojo compuesto'    120   331     157   423 
+     antena              80   528     116   430 
+     'piezas bucales'   104   583     153   513  
+     notos              640   315     639   439  
+     ala                758   242     554   261  
+     esternos           645   602     505   474 
+     patas              340   639     227   579 
+     pleuras            331   587     285   458 
+     espiráculos        737   318     686   455 
+      
+]
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+### Ejemplo 3 (continuación) 
+
+#### Definición de la función `hotSpot` en `examsExtra.R`
+
+
+     hotSpot &lt;- function( img, dat, nOptions = 5, nTrue = 3,  
+                          outImage = "image.png", wrong = NULL ){ 
+       exams::include_supplement( img, recursive = TRUE ) 
+       exams::include_supplement( dat, recursive = TRUE ) 
+        
+       img &lt;- load.image( img ) 
+       dat &lt;- read.table( dat ) 
+        
+       nFalse  &lt;- nOptions - nTrue 
+       corrects &lt;-   1:nTrue 
+       noCorrects &lt;- ( nTrue + 1 ):nOptions 
+        
+       datC &lt;- dat[ sample( 1:nrow( dat ),  nOptions ), ] 
+       datC$solutions &lt;- c( rep( TRUE, nTrue ), 
+                            rep( FALSE, nFalse ) ) 
+       rownames( datC )[ noCorrects ] &lt;- sample( rownames( datC )[ noCorrects ],  
+                                                 nFalse )  
+       datC &lt;- datC[ sample( nOptions ), ] 
+        
+       ## questions/answer 
+       questions &lt;- character( nOptions ) 
+       questions &lt;- c( paste( 1:nOptions,   ": ",  
+                              rownames( datC ), sep = "" ) ) 
+        
+       solutions &lt;- logical( nOptions ) 
+       solutions &lt;- datC$solutions 
+        
+       par( mar= c( 0, 0, 0, 0 ) ) 
+       png( outImage, width = 1500, height = 1500 ) 
+       # Question image 
+       plot( img, axes = FALSE ) 
+       arrows( datC$labx, datC$laby, datC$finix, datC$finiy,  
+               length = 0.25, angle = 15, col = "white", lwd = 10 ) 
+       points( datC$labx, datC$laby, pch = 20, col= "white",  
+               cex = 16 ) 
+       text( datC$labx, datC$laby, 1:nrow( datC ), pch = 20,  
+             col= 1, cex = 4 ) 
+       dev.off() 
+        
+       randomSort &lt;- order( questions ) 
+       return( data.frame( questions[ randomSort ], solutions[ randomSort ] ) ) 
+     } 
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+## ¡Ya realizado!
+
+
+- Se ha creado una nueva función `exams2sakai`.
+
+- Se ha creado una nueva plantilla _qtisakai.xml_.
+
+- Las preguntas de *single choice* y *multiple choice* funcionan.
+
+- Se han añadido nuevos metadatos para identificar diferentes tipos de preguntas de *multiple choice* en Sakai: _mca_ (*multiple correct answer*) y _mcss_ (*multiple correct single selection*).
+
+- Se pueden añadir comentarios globales a nivel de pregunta para respuestas correctas e incorrectas (*Question-Level Feedback*).
+
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+---
+
+class: shuriken
+## En marcha...
+
+- Inclusión de comentarios a nivel de respuesta (*Adding Selection-Level (A, B, C...) Feedback*) y de los dos tipos de comentarios conjuntamente (*Both Feedback*).
+
+
+- Adaptación de los diferentes tipos de cuestiones en Sakai a R/exams: trabajando en el tipo respuesta numérica (*Numeric Response*).
+
+
+## Pendiente
+
+- Programar la asignación automática de una tarea (fichero *nops*) a cada estudiante de un grupo de la asignatura.
+
+
+- Poder leer el fichero .zip con exámenes desde Sakai.
+
+
+- Identificar los diferentes tipos de metadatos en R/exams y estudiar cómo usarlos con Sakai.
+
+
+
+.blade3[.universidad-de-murcia[
+Universidad de Murcia
+]]
+
+
+---
+
+class: shuriken
+background-image: url("imgs/uneteCorriendo.jpg") 
+background-size: cover
+## ¡Únete al proyecto!
+
+.white[
+- palazon@um.es
+- jesus.mendez@ticarum.es
+- lmolera@um.es
+] 
+
+.white[ 
+- Proyecto Rexams en Gitlab
+- Página web (en desarrollo)
+]
+
+
+---
+
+class: shuriken
+background-image: url("imgs/niklas-braun-VRya2cVDHbo-unsplash.jpg") 
+background-size: cover
+
+.center[ 
+&lt;img src="imgs/examsSakaiR.svg" width="80%" /&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script src="https://kit.fontawesome.com/c9ffc15f8f.js" crossorigin="anonymous"></script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
